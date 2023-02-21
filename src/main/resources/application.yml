@@ -15,9 +15,14 @@ spring:
       username: root
       password: 1229
 
-      # 配置静态资源访问路径
 
+# redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
 
+#  配置静态资源访问路径
 #  mvc:
 #    static-path-pattern: "/backend/**"
 #  web:
@@ -31,6 +36,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+
 
 
 # 指定上传文件位置

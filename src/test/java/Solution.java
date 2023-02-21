@@ -1,34 +1,27 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Solution {
 
 
-
     public static void main(String[] args) {
         Solution ss = new Solution();
-        int n = 14;
-        System.out.println(ss.numSquares(n));
+        String s = "applepenapple";
+        List<String> wordDict = new ArrayList<>(Arrays.asList("apple", "pen"));
+        System.out.println(ss.wordBreak(s, wordDict));
     }
 
 
-
-
-    public int numSquares(int n) {
-        int[]dp = new int[n + 1];
-        for (int i = 0; i < n + 1; i++) {
-            dp[i] = i;
-        }
-        int maxNum = (int) Math.floor(Math.sqrt(n));
-        for (int i = 1; i < maxNum + 1; i++) {
-            int square = i * i;
-            for (int j = 1; j <= n; j++) {
-                if(j >= square) {
-                    dp[j] = Math.min(dp[j], dp[j - square] + 1);
+    public boolean wordBreak(String s, List<String> wordDict) {
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        Set<String> set = new HashSet<>(wordDict);
+        for (int i = 0; i <= s.length(); i++) {
+            for (int j = 0; j < wordDict.size(); j++) {
+                if (i - wordDict.get(j).length() >= 0 && set.contains(s.substring(i - wordDict.get(j).length(), i))) {
+                    dp[i] = dp[i] || dp[i - wordDict.get(j).length()];
                 }
             }
         }
-        return dp[n];
+        return dp[s.length()];
     }
 }
