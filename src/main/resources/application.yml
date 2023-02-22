@@ -21,6 +21,9 @@ spring:
     host: 127.0.0.1
     port: 6379
     database: 0
+  cache:
+    redis:
+      time-to-live: 1800000 # 设置缓存数据的过期时间
 
 #  配置静态资源访问路径
 #  mvc:
@@ -36,7 +39,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
-
 
 
 # 指定上传文件位置
